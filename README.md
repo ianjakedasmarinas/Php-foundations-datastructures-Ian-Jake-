@@ -6,7 +6,7 @@
 This project is a simple PHP-based website that demonstrates three important computer science concepts — Recursion, Hash Table, and Binary Search Tree (BST) — using a Digital Library theme.
 It shows how programming logic can organize and search for books just like a real library system.
 
-🧠 Purpose of the Project:
+ Purpose of the Project:
 
 The main purpose of this project is to:
 
@@ -18,7 +18,7 @@ Provide an easy-to-use web interface to explore each concept.
 
 Combine learning and coding through a real-life example — a digital library.
 
-⚙️ How to Run the Project:
+ How to Run the Project:
 Step 1: Install XAMPP
 
 Download and install XAMPP on your computer.
