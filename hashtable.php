@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔍 Hash Table | Digital Library Organizer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    <?php include 'assets/style.css'; ?>
+    body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fb;
+}
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #2f3542;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+}
+.sidebar h2 {
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.sidebar .nav-link {
+  color: white;
+  width: 100%;
+  text-align: left;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+  background-color: #57606f;
+  text-decoration: none;
+}
+.main-content {
+  margin-left: 250px;
+  padding: 40px;
+}
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: white;
+  margin-bottom: 25px;
+}
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>📚 Library</h2>
+  <a href="recursion.php" class="nav-link">🌀 Recursion</a>
+  <a href="hashtable.php" class="nav-link">🔍 Hash Table</a>
+  <a href="bst.php" class="nav-link">🌲 BST</a>
+</div>
+
+<div class="main-content">
+  <h1 class="fw-bold text-dark mb-4">Digital Library Organizer</h1>
+
+  <div id="hash" class="card p-4">
+    <h4 class="text-success">🔍 Hash Table — Book Details</h4>
+    <?php
+    $bookInfo = [
+      "Harry Potter" => ["author" => "J.K. Rowling", "year" => 1997, "genre" => "Fantasy"],
+      "The Hobbit" => ["author" => "J.R.R. Tolkien", "year" => 1937, "genre" => "Fantasy"],
+      "Sherlock Holmes" => ["author" => "Arthur Conan Doyle", "year" => 1892, "genre" => "Mystery"],
+      "Becoming" => ["author" => "Michelle Obama", "year" => 2018, "genre" => "Biography"]
+    ];
+
+    function getBookInfo($title, $bookInfo) {
+      $title = trim($title);
+      foreach ($bookInfo as $key => $book) {
+        if (strcasecmp($title, $key) === 0) {
+          echo "<div class='alert alert-success mt-3'>
+                  <h5>📖 Title: $key</h5>
+                  <p><strong>Author:</strong> {$book['author']}</p>
+                  <p><strong>Year:</strong> {$book['year']}</p>
+                  <p><strong>Genre:</strong> {$book['genre']}</p>
+                </div>";
+          return;
+        }
+      }
+      echo "<div class='alert alert-danger mt-3'>Book not found.</div>";
+    }
+    ?>
+
+    <form method="POST" action="hashtable.php" class="mt-3">
+      <div class="input-group">
+        <input type="text" name="title" class="form-control" placeholder="Enter Book Title" required>
+        <button type="submit" name="searchBook" class="btn btn-success">Search</button>
+      </div>
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["searchBook"])) {
+      $title = $_POST["title"];
+      getBookInfo($title, $bookInfo);
+    }
+    ?>
+  </div>
+</div>
+</body>
+</html>
